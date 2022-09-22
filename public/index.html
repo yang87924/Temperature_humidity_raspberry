@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //fetch
+        const a = fetch('/list').then((res) => {
+            return res.json(); 
+    }).then(result=>{
+        //console.log(result.data[0].id)
+        //console.log(result.data[0].time)
+        //console.log(result.data[1].time)
+        var result1 = [];
+        //for...in
+        for(var i in result.data)
+        {
+            //array.push
+            result1.push(result.data[i].t);
+        }
+        console.log(result1)
+    
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+    </script>
+</body>
+</html>
