@@ -1,33 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>溫溼度感測</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
+
 <body>
-    <script>
-        //fetch
-        const a = fetch('/list').then((res) => {
-            return res.json(); 
-    }).then(result=>{
+  <div id="t"></div>
+  <div id="h"></div>
+  <div id="time"></div>
+  <div style="height:30%;width:30%;">
+    <canvas id="example" width="100" height="100"></canvas>
+  </div>
+  <script>
+    function showLogin() {
+      //fetch
+      fetch('/list').then((res) => {
+        return res.json();
+      }).then(result => {
         //console.log(result.data[0].id)
         //console.log(result.data[0].time)
         //console.log(result.data[1].time)
-        var result1 = [];
+        //取值存入陣列
+        var temperature = [];
+        var humidity = [];
+        var times = [];
         //for...in
-        for(var i in result.data)
-        {
-            //array.push
-            result1.push(result.data[i].t);
+        for (var i in result.data) {
+          //array.push
+          temperature.push(result.data[i].t);
+          humidity.push(result.data[i].h);
+          times.push(result.data[i].time);
         }
-        console.log(result1)
-    
-    })
-    .catch((error) => {
-        console.log(error);
-    })
-    </script>
+        console.log(temperature)
+        /*console.log(humidity)
+        console.log(times)*/
+        document.getElementById("t").innerHTML = '溫度:' + result.data[i].t 
+        document.getElementById("h").innerHTML = '濕度:' + result.data[i].h 
+        document.getElementById("time").innerHTML = '時間:' + result.data[i].time
+        //document.write('溫度:' + result.data[i].t + '<br />')
+        //document.write('濕度:' + result.data[i].h + '<br />')
+        //document.write('時間:' + result.data[i].time + '<br />')
+
+        var ctx = document.getElementById("example"),
+          example = new Chart(ctx, {
+            // 參數設定[註1]
+            type: "line",
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: 'Chart.js Line Chart'
+                }
+              }
+            }, // 圖表類型
+            data: {
+              labels: times, // 標題
+              datasets: [
+                {
+                  label: 'temperature',
+                  data: temperature,
+                  borderColor: 'rgba(255,99,132,1)',
+                  backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                },
+                {
+                  label: 'humidity',
+                  data: humidity,
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                }
+              ]
+            }
+          });
+      })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
+    setInterval("showLogin()", "2000");
+  </script>
+
 </body>
+
 </html>

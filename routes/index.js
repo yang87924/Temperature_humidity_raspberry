@@ -18,9 +18,9 @@ router.get('/list',function(req,res,next){
   
   con.connect(function(err) {
     if (err) throw err;
-    con.query(`SELECT * FROM dbmqtt order by id desc limit 10`, function (err, result, fields) {
+    con.query(`SELECT * FROM dbmqtt order by id desc limit 7`, function (err, result, fields) {
       if (err) throw err;
-      console.log(result);
+      //console.log(result);
       //res
       res.status(200).json({data:result})
     });

@@ -22,11 +22,13 @@ client.on('message', (topic, payload) => {
     //console.log('Received Message:', topic, payload.toString())
     console.log(payload.toString())
     var message=JSON.parse(payload)
-    console.log(message.Temperature)
+    //console.log(message.Temperature)
+    //取值出來存入變數
     var h=message.humidity
     var t=message.Temperature
     var times=message.Time
-    console.log(typeof times)
+    //console.log(typeof times)
+    //存進資料庫
     var mysql = require('mysql');
     var con = mysql.createConnection({
       host: "localhost",
@@ -37,11 +39,11 @@ client.on('message', (topic, payload) => {
 
     con.connect(function(err) {
       if (err) throw err;
-      console.log("Connected!");
+      //console.log("Connected!");
       var sql = `INSERT INTO dbmqtt (t, h,time) VALUES  ('${t}','${h}','${times}')`; 
       con.query(sql, function (err, result) {
         if (err) throw err;
-        console.log("1 record inserted");
+        //console.log("1 record inserted");
       });
     });
    
