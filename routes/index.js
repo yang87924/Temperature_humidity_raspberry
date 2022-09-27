@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var mqtt=require('../mqtt')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,11 +10,19 @@ router.get('/', function(req, res, next) {
 
 router.get('/list',function(req,res,next){
 
+  // var con = mysql.createConnection({
+  //   host: "localhost",
+  //   user: "root2",
+  //   password: "password2",
+  //   database: "dbmqtt"
+  // });
+
   var con = mysql.createConnection({
-    host: "localhost",
-    user: "root2",
-    password: "password2",
-    database: "dbmqtt"
+    host: "sql6.freemysqlhosting.net",
+    user: "sql6522499",
+    password: "SxnXS1px2h",
+    database: "sql6522499",
+    port:3306
   });
   
   con.connect(function(err) {

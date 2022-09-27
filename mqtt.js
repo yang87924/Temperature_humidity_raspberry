@@ -30,12 +30,19 @@ client.on('message', (topic, payload) => {
     //console.log(typeof times)
     //存進資料庫
     var mysql = require('mysql');
+    // var con = mysql.createConnection({
+    //   host: "localhost",
+    //   user: "root2",
+    //   password: "password2",
+    //   database: "dbmqtt"
+    // });
     var con = mysql.createConnection({
-      host: "localhost",
-      user: "root2",
-      password: "password2",
-      database: "dbmqtt"
-    });
+        host: "sql6.freemysqlhosting.net",
+        user: "sql6522499",
+        password: "SxnXS1px2h",
+        database: "sql6522499",
+        port:3306
+      });
 
     con.connect(function(err) {
       if (err) throw err;
