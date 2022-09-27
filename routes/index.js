@@ -17,14 +17,20 @@ router.get('/list',function(req,res,next){
   //   database: "dbmqtt"
   // });
 
+  // var con = mysql.createConnection({
+  //   host: "sql6.freemysqlhosting.net",
+  //   user: "sql6522499",
+  //   password: "SxnXS1px2h",
+  //   database: "sql6522499",
+  //   port:3306
+  // });
   var con = mysql.createConnection({
-    host: "sql6.freemysqlhosting.net",
-    user: "sql6522499",
-    password: "SxnXS1px2h",
-    database: "sql6522499",
+    host: "sql6.freesqldatabase.com",
+    user: "sql6522544",
+    password: "IH5NCK1PP7",
+    database: "sql6522544",
     port:3306
   });
-  
   con.connect(function(err) {
     if (err) throw err;
     con.query(`SELECT * FROM dbmqtt order by id desc limit 7`, function (err, result, fields) {
