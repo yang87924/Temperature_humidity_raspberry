@@ -38,9 +38,11 @@ router.get('/list',function(req,res,next){
       //console.log(result);
       //res
       res.status(200).json({data:result})
+      con.end()
     });
   });
   //res.status(200).json({user:"hello"})
 })
+
 
 module.exports = router;

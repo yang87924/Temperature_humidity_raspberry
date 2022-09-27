@@ -50,6 +50,7 @@ client.on('message', (topic, payload) => {
       var sql = `INSERT INTO dbmqtt (t, h,time) VALUES  ('${t}','${h}','${times}')`; 
       con.query(sql, function (err, result) {
         if (err) throw err;
+        con.end()
         //console.log("1 record inserted");
       });
     });
