@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var mqtt=require('../mqtt')
+require('dotenv').config(); //載入.env環境檔
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
