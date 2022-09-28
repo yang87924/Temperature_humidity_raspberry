@@ -10,26 +10,12 @@ router.get('/', function(req, res, next) {
 
 router.get('/list',function(req,res,next){
 
-  // var con = mysql.createConnection({
-  //   host: "localhost",
-  //   user: "root2",
-  //   password: "password2",
-  //   database: "dbmqtt"
-  // });
-
-  // var con = mysql.createConnection({
-  //   host: "sql6.freemysqlhosting.net",
-  //   user: "sql6522499",
-  //   password: "SxnXS1px2h",
-  //   database: "sql6522499",
-  //   port:3306
-  // });
   var con = mysql.createConnection({
-    host: "sql6.freesqldatabase.com",
-    user: "sql6522544",
-    password: "IH5NCK1PP7",
-    database: "sql6522544",
-    port:3306
+    host: process.env.mysql_host,
+    user: process.env.mysql_user,
+    password: process.env.mysql_password,
+    database: process.env.mysql_database,
+    port: process.env.mysql_port
   });
   con.connect(function(err) {
     if (err) throw err;
